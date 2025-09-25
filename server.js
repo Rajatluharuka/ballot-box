@@ -15,6 +15,11 @@ const candidateRoutes = require("./routes/candidateRoutes");
 app.use("/user", userRoutes);
 app.use("/candidate", candidateRoutes);
 
-app.listen(PORT, () => {
-  console.log("listening on port 3000");
-});
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
